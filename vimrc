@@ -1,5 +1,5 @@
 " Leader
-let mapleader = " "
+let mapleader = "\<Space>"
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
@@ -143,3 +143,54 @@ set diffopt+=vertical
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
+
+" Tab complete for emmet
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+" Color scheme
+colorscheme Tomorrow-Night-Eighties
+
+" Source (reload) your vimrc. Type space, s, o in sequence to trigger
+nmap <leader>so :source $MYVIMRC<cr>
+nmap <leader>sr :sp $MYVIMRC<cr>
+
+" Esc to enter normal mode
+imap jk <esc>
+imap kj <esc>
+
+" Turn of powerline symbols test
+" let g:tmuxline_powerline_separators = 0
+let g:airline_powerline_fonts=1
+set guifont=Hack
+" g:Powerline_symbols = 'unicode'
+
+call plug#begin('~/.vim/plugged')
+
+" Define bundles via Github repos
+Plug 'bling/vim-airline'
+Plug 'christoomey/vim-run-interactive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'scrooloose/syntastic'
+Plug 'slim-template/vim-slim'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+" Plug 'Valloric/YouCompleteMe'
+" http://stackoverflow.com/questions/31257793/ycm-client-support-sopyddll-and-ycm-core-sopyddll-not-detected-you-need
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/tComment'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'mattn/emmet-vim'
+
+call plug#end()
