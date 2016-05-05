@@ -1,3 +1,35 @@
+call plug#begin('~/.vim/plugged')
+
+" Define bundles via Github repos
+Plug 'altercation/vim-colors-solarized'
+Plug 'christoomey/vim-run-interactive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jgdavey/tslime.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'slim-template/vim-slim'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+" Plug 'Valloric/YouCompleteMe'
+" http://stackoverflow.com/questions/31257793/ycm-client-support-sopyddll-and-ycm-core-sopyddll-not-detected-you-need
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/tComment'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'mattn/emmet-vim'
+
+call plug#end()
+
 " Leader
 let mapleader = "\<Space>"
 
@@ -11,6 +43,10 @@ set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
+set guifont=Hack:h14
+set linespace=3
+
+map <C-n> :NERDTreeToggle<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -71,8 +107,8 @@ if executable('ag')
 endif
 
 " Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
+" set textwidth=80
+" set colorcolumn=+1
 
 " Numbers
 set number
@@ -106,6 +142,10 @@ nnoremap <Down> :echoe "Use j"<CR>
 nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
+nnoremap <Leader>a :call RunAllSpecs()<CR>
+
+let g:rspec_runner = "os_x_iterm"
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
@@ -148,49 +188,20 @@ endif
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Color scheme
-colorscheme Tomorrow-Night-Eighties
+colorscheme solarized
+set background=dark
+" colorscheme Tomorrow-Night-Eighties
+" colorscheme monokai
 
 " Source (reload) your vimrc. Type space, s, o in sequence to trigger
 nmap <leader>so :source $MYVIMRC<cr>
-nmap <leader>sr :sp $MYVIMRC<cr>
+nmap <leader>se :sp $MYVIMRC<cr>
 
-" Esc to enter normal mode
-imap jk <esc>
-imap kj <esc>
+" Toggle paste mode
+set pastetoggle=<f2>
 
-" Turn of powerline symbols test
-" let g:tmuxline_powerline_separators = 0
-let g:airline_powerline_fonts=1
-set guifont=Hack
-" g:Powerline_symbols = 'unicode'
+" Dont open nerdtree when vim starts
+let g:NERDTreeHijackNetrw=0
 
-call plug#begin('~/.vim/plugged')
 
-" Define bundles via Github repos
-Plug 'bling/vim-airline'
-Plug 'christoomey/vim-run-interactive'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'edkolev/tmuxline.vim'
-Plug 'kchmck/vim-coffee-script'
-Plug 'pbrisbin/vim-mkdir'
-Plug 'scrooloose/syntastic'
-Plug 'slim-template/vim-slim'
-Plug 'thoughtbot/vim-rspec'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-" Plug 'Valloric/YouCompleteMe'
-" http://stackoverflow.com/questions/31257793/ycm-client-support-sopyddll-and-ycm-core-sopyddll-not-detected-you-need
-Plug 'vim-ruby/vim-ruby'
-Plug 'vim-scripts/tComment'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'mattn/emmet-vim'
 
-call plug#end()
