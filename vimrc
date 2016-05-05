@@ -148,7 +148,7 @@ let g:rspec_runner = "os_x_iterm"
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 " Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
+nnoremap <Leader>r :RunInInteractiveShell<space
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -199,6 +199,11 @@ nmap <leader>se :sp $MYVIMRC<cr>
 
 " Toggle paste mode
 set pastetoggle=<f2>
+autocmd InsertLeave * set nopaste " disable paste mode when leaving insert mode
+
+if has('clipboard')
+    set clipboard=unnamed,unnamedplus " make copied text available to the OS' clipboard
+endif
 
 " Dont open nerdtree when vim starts
 let g:NERDTreeHijackNetrw=0
