@@ -1,3 +1,4 @@
+
 call plug#begin('~/.vim/plugged')
 
 " Define bundles via Github repos
@@ -6,6 +7,8 @@ Plug 'christoomey/vim-run-interactive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jgdavey/tslime.vim'
 Plug 'kchmck/vim-coffee-script'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -43,9 +46,9 @@ set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
-set guifont=Hack:h14
+set guifont=Inconsolas:h15
 set linespace=3
-
+set modifiable " So I can add files with NerdTree
 map <C-n> :NERDTreeToggle<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -94,17 +97,22 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
+" Ignore git files.. works when I get rid of the ag stuff
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
+let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Storegit|hg|svn|optimized|compiled|node_modules)$'
+
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+" if executable('ag')
+"   " Use Ag over Grep
+"   set grepprg=ag\ --nogroup\ --nocolor
+"
+"   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"   let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
+"
+"   " ag is fast enough that CtrlP doesn't need to cache
+"   let g:ctrlp_use_caching = 0
+" endif
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
 
 " Make it obvious where 80 characters is
 " set textwidth=80
@@ -145,6 +153,7 @@ nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 
 let g:rspec_runner = "os_x_iterm"
+"let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 " Run commands that require an interactive shell
@@ -184,7 +193,7 @@ if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
 
-" Tab complete for emmet
+" Tab complete for emmet, might get rid of this
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Color scheme
@@ -208,5 +217,9 @@ endif
 " Dont open nerdtree when vim starts
 let g:NERDTreeHijackNetrw=0
 
+" JSX highlight on .js files
+let g:javascript_enable_domhtmlcss = 1
+let g:jsx_ext_required = 0
 
-
+map <leader>cf :find spec/features/admin/manage_applicants_spec.rb<CR>
+map <leader>ct :find app/views/admin/manage_applicants/_table_approve_technical_reviews.html.erb<CR>
