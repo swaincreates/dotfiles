@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 
 " Define bundles via Github repos
 Plug 'altercation/vim-colors-solarized'
+Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-run-interactive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jgdavey/tslime.vim'
@@ -10,6 +11,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'pbrisbin/vim-mkdir'
+Plug 'rakr/vim-one'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'slim-template/vim-slim'
@@ -102,21 +104,22 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
 let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Storegit|hg|svn|optimized|compiled|node_modules)$'
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-" if executable('ag')
-"   " Use Ag over Grep
-"   set grepprg=ag\ --nogroup\ --nocolor
-"
-"   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-"   let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-"
-"   " ag is fast enough that CtrlP doesn't need to cache
-"   let g:ctrlp_use_caching = 0
-" endif
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  " let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
+  let g:ctrlp_user_command = 'ag -Q -l --nocolor -g "" %s'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 
 " Make it obvious where 80 characters is
-" set textwidth=80
-" set colorcolumn=+1
+set textwidth=80
+set colorcolumn=+1
 
 " Numbers
 set number
@@ -153,7 +156,7 @@ nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 
 let g:rspec_runner = "os_x_iterm"
-"let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+" let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 " Run commands that require an interactive shell
@@ -201,6 +204,12 @@ colorscheme solarized
 set background=dark
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme monokai
+" colorscheme one
+" set background=dark
+
+" Check out some very minimal color:
+" https://github.com/pbrisbin/vim-colors-off
+" https://github.com/fxn/vim-monochrome
 
 " Source (reload) your vimrc. Type space, s, o in sequence to trigger
 nmap <leader>so :source $MYVIMRC<cr>
@@ -220,6 +229,3 @@ let g:NERDTreeHijackNetrw=0
 " JSX highlight on .js files
 let g:javascript_enable_domhtmlcss = 1
 let g:jsx_ext_required = 0
-
-map <leader>cf :find spec/features/admin/manage_applicants_spec.rb<CR>
-map <leader>ct :find app/views/admin/manage_applicants/_table_approve_technical_reviews.html.erb<CR>
