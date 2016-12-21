@@ -52,7 +52,7 @@ set autowrite     " Automatically :write before running commands
 set guifont=Inconsolas:h15
 set linespace=3
 set modifiable " So I can add files with NerdTree
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle %<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
