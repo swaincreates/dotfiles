@@ -8,6 +8,7 @@ Plug 'christoomey/vim-run-interactive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jgdavey/tslime.vim'
 Plug 'kchmck/vim-coffee-script'
+Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'pbrisbin/vim-mkdir'
@@ -52,7 +53,8 @@ set autowrite     " Automatically :write before running commands
 set guifont=Inconsolas:h15
 set linespace=3
 set modifiable " So I can add files with NerdTree
-map <C-n> :NERDTreeToggle %<CR>
+map <C-n> :NERDTreeToggle<CR>
+map <leader>, :NERDTreeFind<CR>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -151,11 +153,11 @@ nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 
 let g:rspec_runner = "os_x_iterm"
-let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
-" let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+" let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 " Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space
+nnoremap <Leader>r :RunInInteractiveShell<space>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -175,6 +177,8 @@ let g:syntastic_check_on_open=1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {"regex": "possibly useless use of a variable in void context"}
+let g:syntastic_javascript_checkers=["eslint"]
+" let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
@@ -192,12 +196,12 @@ if filereadable($HOME . "/.vimrc.local")
 endif
 
 " Tab complete for emmet, might get rid of this
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Color scheme
 colorscheme solarized
 " colorscheme nova
-set background=dark
+set background=light
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme monokai
 " colorscheme one
