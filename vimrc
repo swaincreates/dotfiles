@@ -35,6 +35,11 @@ Plug 'vim-scripts/tComment'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mattn/emmet-vim'
 
+" Airline, Tmuxline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+
 call plug#end()
 
 " Leader
@@ -50,8 +55,10 @@ set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
-set guifont=Inconsolas:h15
-set linespace=3
+" set guifont=Inconsolas:h15
+set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
+set linespace=0
+
 set modifiable " So I can add files with NerdTree
 map <C-n> :NERDTreeToggle<CR>
 map <leader>, :NERDTreeFind<CR>
@@ -61,6 +68,7 @@ map <leader>, :NERDTreeFind<CR>
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
+
 
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
@@ -229,3 +237,7 @@ let g:NERDTreeHijackNetrw=0
 " JSX highlight on .js files
 let g:javascript_enable_domhtmlcss = 1
 let g:jsx_ext_required = 0
+
+" air-line
+let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
