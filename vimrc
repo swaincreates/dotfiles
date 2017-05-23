@@ -1,3 +1,10 @@
+" vim-plug (https://github.com/junegunn/vim-plug) settings
+" Automatically install vim-plug and run PlugInstall if vim-plug not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
 
@@ -51,6 +58,7 @@ set nobackup
 set nowritebackup
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set history=50
+" set relativenumber
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
@@ -113,7 +121,7 @@ set nojoinspaces
 
 " Ignore git files.. works when I get rid of the ag stuff
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
-let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Storegit|hg|svn|optimized|compiled|node_modules)$'
+let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Storegit|hg|svn|optimized|compiled|node_modules|gems)$'
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
