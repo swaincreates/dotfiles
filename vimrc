@@ -12,11 +12,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-run-interactive'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dyng/ctrlsf.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'godlygeek/tabular'
-Plug 'itchyny/vim-haskell-indent'
 Plug 'jgdavey/tslime.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mtscout6/syntastic-local-eslint.vim'
@@ -130,6 +127,13 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Storegit|hg|svn|optimized|compiled|node
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  " let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
+  let g:ctrlp_user_command = 'ag -Q -l --nocolor -g "" %s'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
 endif
 
 
@@ -246,33 +250,3 @@ let g:jsx_ext_required = 0
 " air-line
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
-
-" Move current line up 1 with a space
-nmap <leader>mu kgJ :s/ \{2,}/ /g<cr>
-nmap <leader>bu gJ :s/ \{2,}/ /g<cr>
-
-" == Repeat last change on multiple lines ==
-" What if we did a single modification on the first line of the above snippet
-" appending ; at the end of the line with A;. We can repeat that command by
-" selecting the lines 2-3 and running the dot command over visual selection
-"  with   :'<,'> normal .
-
- nnoremap <leader>bp orequire "pry"; binding.pry<esc>
- nnoremap <leader>dbp :g/binding.pry/d<esc>
-
-" FZF stuff
-let g:fzf_files_options =
-  \ '--color fg:240,bg:-1,hl:33,fg+:241,bg+:221,hl+:33 ' .
-  \ '--color info:33,prompt:33,pointer:166,marker:166,spinner:33 ' .
-  \ '--reverse ' .
-  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
-nnoremap <C-p> :Files<cr>
-let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden'
-
-nnoremap <leader>ga :Files app/<cr>
-nnoremap <leader>gm :Files app/models/<cr>
-nnoremap <leader>gv :Files app/views/<cr>
-nnoremap <leader>gc :Files app/controllers/<cr>
-nnoremap <leader>gy :Files app/assets/stylesheets/<cr>
-nnoremap <leader>gj :Files app/assets/javascripts/<cr>
-nnoremap <leader>gs :Files spec/<cr>
