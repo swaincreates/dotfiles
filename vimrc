@@ -15,15 +15,16 @@ Plug 'christoomey/vim-run-interactive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'jgdavey/tslime.vim'
-Plug 'kchmck/vim-coffee-script'
+" Plug 'kchmck/vim-coffee-script'
 Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'rakr/vim-one'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'slim-template/vim-slim'
+" Plug 'slim-template/vim-slim'
+Plug 'sheerun/vim-polyglot'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-commentary'
@@ -38,7 +39,7 @@ Plug 'tpope/vim-surround'
 " Plug 'Valloric/YouCompleteMe'
 " http://stackoverflow.com/questions/31257793/ycm-client-support-sopyddll-and-ycm-core-sopyddll-not-detected-you-need
 Plug 'trevordmiller/nova-vim'
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mattn/emmet-vim'
@@ -138,8 +139,8 @@ endif
 
 
 " Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
+" set textwidth=80
+" set colorcolumn=+1
 
 " Numbers
 set number
