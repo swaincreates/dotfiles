@@ -113,6 +113,8 @@ set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
+autocmd FileType php setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -172,7 +174,7 @@ nnoremap <Leader>a :call RunAllSpecs()<CR>
 
 let g:rspec_runner = "os_x_iterm"
 " let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
-let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
@@ -251,3 +253,5 @@ let g:jsx_ext_required = 0
 " air-line
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
