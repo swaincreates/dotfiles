@@ -109,12 +109,23 @@ let g:ruby_indent_assignment_style = 'variable'
 
 " Color scheme that depends on plugin `Neosolarized`
 colorscheme NeoSolarized
-set termguicolors
-"
+set background=light
+" set termguicolors
+
+" no idea whats happening, but fixes coloring in tmux in iterm2
+" https://vi.stackexchange.com/questions/10708/no-syntax-highlighting-in-tmux
+if &term =~# '256color' && ( &term =~# '^screen'  || &term =~# '^tmux' )
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif
+
 " air-line/tmux-line settings
 " let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:tmuxline_powerline_separators = 0
+
+
 
