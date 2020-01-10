@@ -8,6 +8,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'dense-analysis/ale'
 Plug 'dyng/ctrlsf.vim'
 Plug 'iCyMind/NeoSolarized' " Solarized with termguicolors
 Plug 'janko/vim-test'
@@ -82,6 +83,18 @@ nnoremap <silent> <Leader>a :TestSuite<CR>
 nnoremap <silent> <Leader>gt :TestVisit<CR>
 
 let g:test#strategy = "neovim"
+
+" Ale settings
+let g:ale_linters = {
+\   'ruby': ['ruby', 'standardrb'],
+\}
+
+let g:ale_fixers = {
+\   'ruby': ['standardrb'],
+\}
+
+let g:ale_fix_on_save = 1
+let g:ruby_indent_assignment_style = 'variable'
 
 " Color scheme that depends on plugin `Neosolarized`
 colorscheme NeoSolarized
