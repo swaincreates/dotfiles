@@ -112,6 +112,7 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
   autocmd BufRead,BufNewFile *.config set filetype=yaml
+  autocmd BufRead,BufNewFile *.yaml set filetype=yaml
 augroup END
 
 " Switch between the last two files
