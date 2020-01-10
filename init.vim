@@ -9,6 +9,7 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
+Plug 'airblade/vim-gitgutter'
 Plug 'dyng/ctrlsf.vim'
 Plug 'iCyMind/NeoSolarized' " Solarized with termguicolors
 Plug 'janko/vim-test'
@@ -19,6 +20,13 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Airline, Tmuxline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
@@ -96,7 +104,17 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ruby_indent_assignment_style = 'variable'
 
+" Deoplete
+" let g:deoplete#enable_at_startup = 1
+
 " Color scheme that depends on plugin `Neosolarized`
 colorscheme NeoSolarized
 set termguicolors
+"
+" air-line/tmux-line settings
+" let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:tmuxline_powerline_separators = 0
 
