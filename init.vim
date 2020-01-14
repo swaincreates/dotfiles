@@ -21,7 +21,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'takkii/Jet-black-wings' " ruby source for deoplete
+Plug 'fishbullet/deoplete-ruby'
 
 " Airline, Tmuxline
 Plug 'vim-airline/vim-airline'
@@ -32,14 +34,15 @@ call plug#end()
 
 let mapleader = "\<Space>"
 
-set modifiable    " lets current buffer be changed, helps with nerdtree set nojoinspaces  " Use one space, not two, after punctuation.
+set modifiable          " lets current buffer be changed, helps with nerdtree set nojoinspaces  " Use one space, not two, after punctuation.
 set nobackup
 set nowrap
-set number        " show line number  
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set splitbelow    " Open new split panes to right and bottom, which feels more natural
+set number              " show line number  
+set ruler               " show the cursor position all the time
+set showcmd             " display incomplete commands
+set splitbelow          " Open new split panes to right and bottom, which feels more natural
 set splitright
+set clipboard=unnamed   " will copy to mac clipboard
 
 " Tabs and spaces
 set tabstop=2
@@ -65,13 +68,17 @@ nnoremap <C-l> <C-w>l
 
 " Terminal stuff
 if has('nvim')
-  " tmap <C-o> <C-\><C-n>
+  tmap <C-o> <C-\><C-n>
 endif
 
 " Source and edit vimrc.
 nmap <leader>so :source $MYVIMRC<cr>
 nmap <leader>se :sp $MYVIMRC<cr>
-"
+
+
+
+" Plugin Settings ======================================================
+
 " Added following to zshrc to respect gitignore by using ag for FZF
 " export FZF_DEFAULT_COMMAND="ag -l --nocolor --hidden --ignore /.git/"
 nnoremap <silent> <c-p> :Files<cr>
@@ -105,7 +112,8 @@ let g:ale_fix_on_save = 1
 let g:ruby_indent_assignment_style = 'variable'
 
 " Deoplete
-" let g:deoplete#enable_at_startup = 1
+" Make sure `:echo has("python3")` returns 1
+let g:deoplete#enable_at_startup = 1
 
 " Color scheme that depends on plugin `Neosolarized`
 colorscheme NeoSolarized
@@ -127,5 +135,13 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:tmuxline_powerline_separators = 0
 
-
+" CtrlSF mappings
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
