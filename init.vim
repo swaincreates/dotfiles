@@ -24,10 +24,11 @@ Plug 'preservim/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets' " try it out
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets' " try it out
 Plug 'ap/vim-css-color'
 Plug 'godlygeek/tabular'
+Plug 'vimwiki/vimwiki'
 " Plug 'takkii/Jet-black-wings' " ruby source for deoplete
 " Plug 'fishbullet/deoplete-ruby' " doesnt really seem to help, too much noise
 

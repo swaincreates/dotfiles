@@ -26,6 +26,7 @@ Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'vimwiki/vimwiki'
 
 " Airline, Tmuxline
 Plug 'vim-airline/vim-airline'
