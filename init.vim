@@ -6,12 +6,11 @@
 " - For Neovim: stdpath('data') . '/plugged'
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'dyng/ctrlsf.vim'
-Plug 'iCyMind/NeoSolarized' " Solarized with termguicolors
 Plug 'janko/vim-test'
 Plug 'sheerun/vim-polyglot' " Going to try this for now
 Plug 'tpope/vim-commentary'
@@ -23,14 +22,9 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets' " try it out
 Plug 'ap/vim-css-color'
 Plug 'godlygeek/tabular'
-Plug 'vimwiki/vimwiki'
-" Plug 'takkii/Jet-black-wings' " ruby source for deoplete
-" Plug 'fishbullet/deoplete-ruby' " doesnt really seem to help, too much noise
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 " Airline, Tmuxline
 Plug 'vim-airline/vim-airline'
@@ -46,7 +40,7 @@ set wildmenu
 set modifiable          " lets current buffer be changed, helps with nerdtree set nojoinspaces  " Use one space, not two, after punctuation.
 set nobackup
 set nowrap
-set number              " show line number  
+set number              " show line number
 set ruler               " show the cursor position all the time
 set showcmd             " display incomplete commands
 set splitbelow          " Open new split panes to right and bottom, which feels more natural
@@ -164,24 +158,20 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ruby_indent_assignment_style = 'variable'
 
-" Deoplete
-" Make sure `:echo has("python3")` returns 1
-let g:deoplete#enable_at_startup = 1
+" https://github.com/sonph/onehalf/blob/master/vim/README.md
+set t_Co=256
+set cursorline
+colorscheme onehalflight
 
-" Color scheme that depends on plugin `Neosolarized`
-colorscheme NeoSolarized
-set background=light
-" set termguicolors
 
-" no idea whats happening, but fixes coloring in tmux in iterm2
-" https://vi.stackexchange.com/questions/10708/no-syntax-highlighting-in-tmux
-if &term =~# '256color' && ( &term =~# '^screen'  || &term =~# '^tmux' )
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    set termguicolors
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
 endif
 
 " air-line/tmux-line settings
+let g:airline_theme='onehalflight'
 " let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -198,15 +188,9 @@ nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
-" UltiSnips 
-nmap     <C-U>e :UltiSnipsEdit<CR>
-
-let g:UltiSnipsEditSplit="vertical"
 
 " Tabular
 " AddTabularPattern semi /\S\+;
 vmap <Leader>t; :Tab /\S\+;<CR>
-
-
 
 
