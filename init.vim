@@ -24,7 +24,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'ap/vim-css-color'
 Plug 'godlygeek/tabular'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'iCyMind/NeoSolarized'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Need to get this working
+" Plug 'ryanoasis/vim-devicons'
 
 " Airline, Tmuxline
 Plug 'vim-airline/vim-airline'
@@ -74,6 +77,7 @@ autocmd FileType make set tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab
 
 syntax on
 filetype plugin indent on
+autocmd BufNewFile,BufRead *.env.* set syntax=sh
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -139,39 +143,38 @@ let g:VtrClearBeforeSend = 0
 
 " Ale settings
 let g:ale_linters = {
-\   'css': ['stylelint'],
-\   'scss': ['stylelint'],
-\   'ruby': ['ruby', 'standardrb'],
+\   'javascript': ['eslint'],
+\   'ruby': ['ruby', 'rubocop'],
 \   'sh': ['shellcheck'],
 \}
 
 let g:ale_fixers = {
-\   'scss': ['stylelint'],
-\   'css': ['stylelint'],
-\   'ruby': ['standardrb'],
-\   'javascript': ['standard'],
+\   'ruby': ['rubocop'],
+\   'javascript': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \}
 
 " let g:ale_open_list = 1
 " let g:ale_set_loclist = 0
 " let g:ale_set_quickfix = 1
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
+let g:airline#extensions#ale#enabled = 1
 let g:ruby_indent_assignment_style = 'variable'
 
 " https://github.com/sonph/onehalf/blob/master/vim/README.md
 set t_Co=256
 set cursorline
-colorscheme onehalflight
+colorscheme NeoSolarized
+set background=light
 
-
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
+if &term =~# '256color' && ( &term =~# '^screen'  || &term =~# '^tmux' )	
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"	
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"	
+    set termguicolors	
 endif
 
 " air-line/tmux-line settings
-let g:airline_theme='onehalflight'
+" let g:airline_theme='onehalflight'
 " let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -193,4 +196,5 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 " AddTabularPattern semi /\S\+;
 vmap <Leader>t; :Tab /\S\+;<CR>
 
-
+map <Leader>bp orequire'pry';binding.pry<esc>:w<cr>
+map <Leader>bb orequire'byebug';byebug<esc>:w<cr>
