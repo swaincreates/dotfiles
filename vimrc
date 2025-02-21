@@ -59,6 +59,7 @@ set nowrap
 set splitbelow " Open new split panes to right and bottom, which feels more natural
 set splitright
 set diffopt+=vertical " Always use vertical diffs
+set visualbell
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·

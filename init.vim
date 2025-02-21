@@ -48,6 +48,7 @@ set ruler               " show the cursor position all the time
 set showcmd             " display incomplete commands
 set splitbelow          " Open new split panes to right and bottom, which feels more natural
 set splitright
+set visualbell
 
 if has('clipboard')
   set clipboard=unnamed,unnamedplus " make copied text available to the OS' clipboard
@@ -71,6 +72,7 @@ set shiftwidth=2
 set shiftround
 set expandtab
 autocmd FileType php setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType java setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType c setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType make set tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab
@@ -142,22 +144,26 @@ let g:VtrUseVtrMaps = 1
 let g:VtrClearBeforeSend = 0
 
 " Ale settings
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'ruby': ['ruby', 'rubocop'],
-\   'sh': ['shellcheck'],
-\}
+" let g:ale_linter_aliases = {'javascript': ['css', 'javascript']}
+" let g:ale_linters = {
+" \   'javascript': ['eslint', 'stylelint'],
+" \   'ruby': ['ruby', 'rubocop'],
+" \   'sh': ['shellcheck'],
+" \}
 
-let g:ale_fixers = {
-\   'ruby': ['rubocop'],
-\   'javascript': ['eslint'],
-\   'typescriptreact': ['eslint'],
-\}
+" let g:ale_fixers = {
+" \   'ruby': ['rubocop'],
+" \   'javascript': ['eslint'],
+" \   'typescriptreact': ['eslint'],
+" \}
+let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
+let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+let g:ale_fixers = {'jsx': ['eslint'], 'javascript': ['eslint']}
 
 " let g:ale_open_list = 1
 " let g:ale_set_loclist = 0
 " let g:ale_set_quickfix = 1
-" let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ruby_indent_assignment_style = 'variable'
 
